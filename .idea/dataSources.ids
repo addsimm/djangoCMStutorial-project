@@ -121,6 +121,7 @@
       <exported-key name="#FAKE_djangocms_teaser_teaser_2" table="djangocms_teaser_teaser" schema="" catalog="" columns="cmsplugin_ptr_id"/>
       <exported-key name="#FAKE_djangocms_text_ckeditor_text_1" table="djangocms_text_ckeditor_text" schema="" catalog="" columns="cmsplugin_ptr_id"/>
       <exported-key name="#FAKE_djangocms_video_video_1" table="djangocms_video_video" schema="" catalog="" columns="cmsplugin_ptr_id"/>
+      <exported-key name="#FAKE_polls_plugin_pollplugin_2" table="polls_plugin_pollplugin" schema="" catalog="" columns="cmsplugin_ptr_id"/>
       <index name="cms_cmsplugin_667a6151" unique="true" columns="placeholder_id"/>
       <index name="cms_cmsplugin_6be37982" unique="true" columns="parent_id"/>
       <index name="cms_cmsplugin_b5e4cf8f" unique="true" columns="plugin_type"/>
@@ -531,6 +532,30 @@
       <column name="site" sqlType="INTEGER UNSIGNED" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
       <column name="key" sqlType="VARCHAR(255)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
       <primary-key columns="id"/>
+    </table>
+    <table name="polls_choice" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <column name="choice_text" sqlType="VARCHAR(200)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
+      <column name="votes" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <column name="poll_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <primary-key columns="id"/>
+      <foreign-key name="#FAKE_polls_choice_1" columns="poll_id" ref-table="polls_poll" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="polls_choice_582e9e5a" unique="true" columns="poll_id"/>
+    </table>
+    <table name="polls_plugin_pollplugin" schema="" catalog="" type="TABLE">
+      <column name="cmsplugin_ptr_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <column name="poll_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <primary-key columns="cmsplugin_ptr_id"/>
+      <foreign-key name="#FAKE_polls_plugin_pollplugin_1" columns="poll_id" ref-table="polls_poll" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="#FAKE_polls_plugin_pollplugin_2" columns="cmsplugin_ptr_id" ref-table="cms_cmsplugin" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="polls_plugin_pollplugin_582e9e5a" unique="true" columns="poll_id"/>
+    </table>
+    <table name="polls_poll" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <column name="question" sqlType="VARCHAR(200)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
+      <primary-key columns="id"/>
+      <exported-key name="#FAKE_polls_choice_1" table="polls_choice" schema="" catalog="" columns="poll_id"/>
+      <exported-key name="#FAKE_polls_plugin_pollplugin_1" table="polls_plugin_pollplugin" schema="" catalog="" columns="poll_id"/>
     </table>
     <table name="reversion_revision" schema="" catalog="" type="TABLE">
       <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
