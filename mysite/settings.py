@@ -94,6 +94,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, 'polls', 'templates'),
     os.path.join(BASE_DIR, 'mysite', 'templates'),
 )
 
@@ -137,9 +138,9 @@ INSTALLED_APPS = (
     'djangocms_picture',
     'djangocms_teaser',
     'djangocms_video',
+    'south',
     'reversion',
     'polls',
-    'polls_plugin',
     'mysite'
 )
 
@@ -197,4 +198,5 @@ MIGRATION_MODULES = {
     'djangocms_googlemap': 'djangocms_googlemap.migrations_django',
     'djangocms_style': 'djangocms_style.migrations_django',
     'djangocms_teaser': 'djangocms_teaser.migrations_django'
+    # 'polls': 'polls.south_migrations'
 }
