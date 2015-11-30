@@ -1,6 +1,4 @@
-import os
-gettext = lambda s: s
-DATA_DIR = os.path.dirname(os.path.dirname(__file__))
+
 """
 Django settings for mysite project.
 
@@ -12,9 +10,11 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-import os
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+import os
+gettext = lambda s: s
+DATA_DIR = os.path.dirname(os.path.dirname(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -94,8 +94,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'polls', 'templates'),
-    os.path.join(BASE_DIR, 'mysite', 'templates'),
+    os.path.join(BASE_DIR, 'polls', 'templates', 'polls'),
+    os.path.join(BASE_DIR, 'mysite', 'templates', 'mysite'),
 )
 
 MIDDLEWARE_CLASSES = (
@@ -138,6 +138,9 @@ INSTALLED_APPS = (
     'djangocms_picture',
     'djangocms_teaser',
     'djangocms_video',
+    'django_comments',
+    'mptt',
+    'tagging',
     'south',
     'reversion',
     'polls',
@@ -180,11 +183,11 @@ CMS_PLACEHOLDER_CONF = {}
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'HOST': 'localhost',
-        'NAME': 'project.db',
-        'PASSWORD': '',
-        'PORT': '',
-        'USER': ''
+        # 'HOST': 'localhost',
+        'NAME': 'project.db'
+        # 'PASSWORD': '',
+        # 'PORT': '',
+        # 'USER': ''
     }
 }
 
@@ -197,6 +200,5 @@ MIGRATION_MODULES = {
     'djangocms_picture': 'djangocms_picture.migrations_django',
     'djangocms_googlemap': 'djangocms_googlemap.migrations_django',
     'djangocms_style': 'djangocms_style.migrations_django',
-    'djangocms_teaser': 'djangocms_teaser.migrations_django'
-    # 'polls': 'polls.south_migrations'
+    'djangocms_teaser': 'djangocms_teaser.migrations_django',
 }
